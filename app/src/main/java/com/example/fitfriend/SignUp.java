@@ -18,30 +18,41 @@ public class SignUp extends Activity {
 
     public void onSignUpClick(View v) {
 
-        EditText email =  (EditText)findViewById(R.id.TFemail);
-        EditText password1 =  (EditText)findViewById(R.id.TFpassword1);
-        EditText password2 =  (EditText)findViewById(R.id.TFpassword2);
+        if(v.getId() == R.id.BsignupButton) {
 
-        String emailstr = email.getText().toString();
-        String password1str = password1.getText().toString();
-        String password2str = password2.getText().toString();
+            EditText email = (EditText) findViewById(R.id.TFemail);
+            EditText pass1 = (EditText) findViewById(R.id.TFpass1);
+            EditText pass2 = (EditText) findViewById(R.id.TFpass2);
+            EditText name =  (EditText) findViewById(R.id.TFname);
+            EditText uname = (EditText) findViewById(R.id.TFuname);
 
-        if(!password1str.equals(password2str)){
 
-            //makes a message that says the passwords don't match
+            String emailstr = email.getText().toString();
+            String pass1str = pass1.getText().toString();
+            String pass2str = pass2.getText().toString();
+            String namestr = name.getText().toString();
+            String unamestr = uname.getText().toString();
 
-            Toast password = Toast.makeText(SignUp.this, "Passwords don't match.", +
-                    Toast.LENGTH_SHORT);
-            password.show();
-        }
-        else {
-            //puts data in database
+            if (!pass1str.equals(pass2str)) {
 
-            Contact c = new Contact();
-            c.setEmail(emailstr);
-            c.setPassword(password1str);
+                //makes a message that says the passwords don't match
 
-            helper.insertContact(c);
+                Toast pass = Toast.makeText(SignUp.this, "Passwords don't match.", +
+                        Toast.LENGTH_SHORT);
+                pass.show();
+            } else {
+
+                //puts data in database
+
+                Contact c = new Contact();
+                c.setEmail(emailstr);
+                c.setPass(pass1str);
+                c.setName(namestr);
+                c.setUname(unamestr);
+
+
+                helper.insertContact(c);
+            }
         }
     }
 }

@@ -25,16 +25,16 @@ public class MainActivity extends AppCompatActivity {
             String str = a.getText().toString();
 
             EditText b = (EditText)findViewById(R.id.TFpassword);
-            String password = b.getText().toString();
+            String pass = b.getText().toString();
 
-            String Password = helper.searchpassword(str);
-            if(password.equals(Password)){
+            String password = helper.searchPass(str);
+            if(pass.equals(password)){
                 Intent i = new Intent(MainActivity.this, main_menu.class);
                 i.putExtra("email", str);
                 startActivity(i);
             }
             else{
-                Toast temp = Toast.makeText(MainActivity.this, "Email and" +
+                Toast temp = Toast.makeText(MainActivity.this, "Email and " +
                         "passwords do not match",
                         Toast.LENGTH_SHORT);
                 temp.show();

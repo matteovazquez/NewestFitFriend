@@ -2,15 +2,16 @@ package com.example.fitfriend;
 
 public class Contact {
 
-    int id;
-    String email, password;
+    String email, pass, uname, name;
 
-    public void setId(int id) {
-        this.id = id;
+
+
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getId(){
-        return this.id;
+    public String getName(){
+        return this.name;
     }
 
     public void setEmail(String email) {
@@ -21,12 +22,20 @@ public class Contact {
         return this.email;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPass(String password) {
+        this.pass = pass;
     }
 
-    public String getPassword(){
-        return this.password;
+    public String getPass(){
+        return this.pass;
+    }
+
+    public void setUname(String uname) {
+        this.uname = uname;
+    }
+
+    public String getUname(){
+        return this.uname;
     }
 
 }

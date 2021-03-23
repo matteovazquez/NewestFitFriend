@@ -9,6 +9,6 @@ public class main_menu extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
-        String email = getIntent().getStringExtra("email");
+        String uname = getIntent().getStringExtra("uname");
     }
 }

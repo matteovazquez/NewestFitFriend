@@ -13,13 +13,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_NAME = "contacts";
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_EMAIL = "email";
-    private static final String COLUMN_PASSWORD = "password";
-
-    private static final String TABLE_CREATE = "create table " + TABLE_NAME +
-            "(id integer primary key not null, auto_increment, email text not null," +
-            "password text not null)";
+    private static final String COLUMN_PASS = "pass";
+    private static final String COLUMN_UNAME = "uname";
+    private static final String COLUMN_NAME = "name";
 
     SQLiteDatabase db;
+
+    private static final String TABLE_CREATE = "create table contacts" +
+            "(id integer primary key not null, auto_increment, name text not null, " +
+            "email text not null, pass text not null, uname text not null);";
+
 
     public DatabaseHelper(Context context) {
 
@@ -27,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+    public void onCreate(SQLiteDatabase db) {
 
         db.execSQL(TABLE_CREATE);
         this.db = db;
@@ -43,15 +46,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         values.put(COLUMN_ID, count);
         values.put(COLUMN_EMAIL, c.getEmail());
-        values.put(COLUMN_PASSWORD, c.getPassword());
+        values.put(COLUMN_PASS, c.getPass());
+        values.put(COLUMN_NAME, c.getName());
+        values.put(COLUMN_UNAME, c.getUname());
 
+
+        //inserts above data into db
         db.insert(TABLE_NAME, null, values);
         db.close();
     }
 
-    public String searchpassword(String email){
+    public String searchPass(String email){
+        //reads database
         db = this.getReadableDatabase();
-        String query = "select email, password from " + TABLE_NAME;
+        String query = "select email, pass from " + TABLE_NAME;
         Cursor cursor = db.rawQuery(query, null);
 
         String a, b;
@@ -59,6 +67,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if(cursor.moveToFirst()){
 
             do{
+                //0 to read the email and 1 to read the pass
                 a = cursor.getString(0);
                 b = cursor.getString(1);
 
